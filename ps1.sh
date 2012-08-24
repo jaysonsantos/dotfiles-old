@@ -46,12 +46,12 @@ function django_version() {
 }
 
 function linebreak() {
-    echo -e '\n\033[00m'$(basename `pwd`) '$ ';
+    echo -e '\n\033[00m$ ';
 }
 
 b_is_pythonist=1
 
-export PS1="\[\e]0;\u@\h: \w\a\\u@\h:"
+export PS1="\u@\h $c_cyan\w"
 export PS1="$PS1\`branch_color\`\`git_branch\`"
 
 if [ $b_is_pythonist -ne 0 ]
