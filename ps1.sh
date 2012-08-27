@@ -3,14 +3,39 @@ c_red=`tput setaf 1`
 c_green=`tput setaf 2`
 c_sgr0=`tput sgr0`
 
-function branch_color ()
+
+function is_git_working_copy()
 {
+    wc=0
     if git rev-parse --git-dir >/dev/null 2>&1
     then
-        color=""
-        if git diff --quiet 2>/dev/null >&2 
+        wc=0
+    else
+        wc=1
+    fi
+
+    return $wc
+}
+
+function branch_is_dirty()
+{
+    is_dirty=0
+    if is_git_working_copy
+    then
+        is_dirty=$(git status | grep clean | wc -l)
+    fi
+
+    return $is_dirty
+}
+
+function branch_color ()
+{
+    color=""
+    if is_git_working_copy
+    then
+        if ! branch_is_dirty
         then
-            color="${c_green}"
+            color=${c_green}
         else
             color=${c_red}
         fi
@@ -22,13 +47,20 @@ function branch_color ()
 
 function git_branch ()
 {
-    if git rev-parse --git-dir >/dev/null 2>&1
+    if is_git_working_copy
     then
         gitver=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
     else
         return 0
     fi
-    echo -e " ("$gitver")"
+    echo -ne " ("$gitver
+
+    if branch_is_dirty
+    then
+         echo -n "*"
+    fi
+
+    echo -n ")"
 }
 
 function python_version() {
