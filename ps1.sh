@@ -3,19 +3,29 @@ c_red=`tput setaf 1`
 c_green=`tput setaf 2`
 c_sgr0=`tput sgr0`
 
-function branch_color ()
+function branch_is_clean()
 {
+    is_clean=0
     if git rev-parse --git-dir >/dev/null 2>&1
     then
-        color=""
-        if git diff --quiet 2>/dev/null >&2 
+        if git diff --quite 2>/dev/null >&2
+            is_clean=0
         then
-            color="${c_green}"
-        else
-            color=${c_red}
+            is_clean=1
         fi
+    fi
+
+    return $is_clean
+}
+
+function branch_color ()
+{
+    color=""
+    if branch_is_clean
+    then
+        color=${c_green}
     else
-        return 0
+        color=${c_red}
     fi
     echo -ne $color
 }
@@ -28,7 +38,14 @@ function git_branch ()
     else
         return 0
     fi
-    echo -e " ("$gitver")"
+    echo -ne " ("$gitver
+
+    if ! branch_is_clean
+    then
+         echo -n "*"
+    fi
+
+    echo -n ")"
 }
 
 function python_version() {
