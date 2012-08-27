@@ -8,7 +8,7 @@ function branch_is_clean()
     is_clean=0
     if git rev-parse --git-dir >/dev/null 2>&1
     then
-        if git diff --quite 2>/dev/null >&2
+        if git diff --quiet 2>/dev/null >&2
             is_clean=0
         then
             is_clean=1
