@@ -8,7 +8,7 @@ function branch_color ()
     if git rev-parse --git-dir >/dev/null 2>&1
     then
         color=""
-        if git diff --quiet 2>/dev/null >&2 
+        if git diff --quiet 2>/dev/null >&2
         then
             color="${c_green}"
         else
@@ -46,18 +46,22 @@ function django_version() {
 }
 
 function linebreak() {
-    echo -e '\n\033[00m$ ';
+    echo -e -n '\033[00m';
+    echo -e '\n$ '
 }
-
-b_is_pythonist=1
 
 export PS1="\u@\h $c_cyan\w"
 export PS1="$PS1\`branch_color\`\`git_branch\`"
 
-if [ $b_is_pythonist -ne 0 ]
+if [ -z "$PS1_EXCLUDE_PYTHON" ]
+then
+    PS1_EXCLUDE_PYTHON=0
+fi
+
+# The idea of this is: before source this export PS1_EXCLUDE_PYTHON=1
+if [ "$PS1_EXCLUDE_PYTHON" -ne 1 ]
 then
     export PS1="$PS1\`python_version\`\`django_version\`"
 fi
-
 
 export PS1="$PS1\`linebreak\`"
