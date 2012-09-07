@@ -46,7 +46,7 @@ function django_version() {
 }
 
 function linebreak() {
-    echo -e '\033[00m\n$ ';
+    echo -e $c_sgr0 '\n$ ';
 }
 
 export PS1="\u@\h $c_cyan\w"
