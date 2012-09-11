@@ -81,8 +81,6 @@ function linebreak() {
     echo -e $c_sgr0 '\n$ ';
 }
 
-b_is_pythonist=1
-
 export PS1="\u@\h $c_cyan\w"
 export PS1="$PS1\`branch_color\`\`git_branch\`"
 
