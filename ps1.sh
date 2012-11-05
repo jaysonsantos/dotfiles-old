@@ -24,7 +24,7 @@ function branch_is_dirty()
     is_dirty=0
     if is_git_working_copy
     then
-        is_dirty=$(git status | grep clean | wc -l)
+        is_dirty=$(git status | grep 'working directory clean' | wc -l)
     fi
 
     return $is_dirty
