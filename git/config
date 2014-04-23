@@ -1,6 +1,7 @@
 [alias]
 st=status
 lver=!git tag | sort -V | tail -n1
+co=checkout
 
 [user]
 	email = erickwilder@gmail.com
