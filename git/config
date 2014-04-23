@@ -1,0 +1,10 @@
+[alias]
+st=status
+lver=!git tag | sort -V | tail -n1
+co=checkout
+
+[user]
+	email = erickwilder@gmail.com
+	name = Erick Wilder
+[push]
+	default = simple
