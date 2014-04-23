@@ -1,0 +1,13 @@
+{
+	"color_scheme": "Packages/User/Monokai (SL).tmTheme",
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+
+	"rulers": [100],
+	"ensure_newline_at_eof_on_save": true,
+	"translate_tabs_to_spaces": true,
+    "highlight_line": true,
+    
+}

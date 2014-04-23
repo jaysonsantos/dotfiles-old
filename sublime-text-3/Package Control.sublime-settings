@@ -1,0 +1,9 @@
+{
+	"installed_packages":
+	[
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-jshint",
+		"SublimeLinter-pylint"
+	]
+}
