@@ -1,10 +1,7 @@
-# My dotfiles
-Dotfiles I like to use and wanted to share.
+Dotfiles
+===
+Some files used to setup my working environment. This includes some Sublime Text,
+git and other useful config files
 
-## PS1
-You can use PS1 variable to show things you judge useful.
-I've added some stuff i think is useful, to use it just do:
+Feel free to use and make suggestions
 
-```bash
-source ~/you/ps1/location
-```
